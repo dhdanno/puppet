@@ -1,6 +1,5 @@
 class git {
-    include git::install
-    include git::keys
+    include git::install, git::keys
 }
 
 class git::install {
