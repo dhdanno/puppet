@@ -4,11 +4,9 @@ class git {
 }
 
 class git::install {
-
 	package { "git":
 		ensure => present,
 	}
-
 }
 
 define git::clone ( $path, $dir){
