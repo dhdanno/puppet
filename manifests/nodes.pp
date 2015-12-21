@@ -3,7 +3,6 @@ node default {
     include users
     include ssh
     include postgres
-}
 
 file { '/usr/local/app':
     ensure => directory,
@@ -15,4 +14,6 @@ file { '/usr/local/app':
 git::clone { 'https://github.com/dhdanno/puppet':
     path => '/usr/local/app',
     dir => 'django',
+}
+
 }
