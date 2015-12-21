@@ -21,42 +21,42 @@ define git::clone ( $path, $dir){
 
 class git::keys {
 
-    file { "/home/<username>/.ssh":
+    file { "/home/bob/.ssh":
         ensure => directory,
-        owner => '<username>',
-        group => '<username>',
+        owner => 'bob',
+        group => 'bob',
         mode => 0600,
     }
 
     # Key for to be able to connect to GitHub
-    file { "/home/<username>/.ssh/system_key":
+    file { "/home/bob/.ssh/system_key":
         ensure => present,
         source => "puppet:///modules/git/system_key",
-        owner => '<username>',
-        group => '<username>',
+        owner => 'bob',
+        group => 'bob',
         mode => 0600,
-        require => File['/home/<username>/.ssh'],
+        require => File['/home/bob/.ssh'],
     }
 
     # Configure key to be automatically used for GitHub
-    file { "/home/<username>/.ssh/config":
+    file { "/home/bob/.ssh/config":
         ensure => present,
         source => "puppet:///modules/git/config",
-        owner => '<username>',
-        group => '<username>',
+        owner => 'bob',
+        group => 'bob',
         mode => 0600,
-        require => File['/home/<username>/.ssh'],
+        require => File['/home/bob/.ssh'],
 
     }
 
     # Add GitHub to known hosts to avoid prompt
-    file { "/home/<username>/.ssh/known_hosts":
+    file { "/home/bob/.ssh/known_hosts":
         ensure => present,
         source => "puppet:///modules/git/known_hosts",
-        owner => '<username>',
-        group => '<username>',
+        owner => 'bob',
+        group => 'bob',
         mode => 0600,
-        require => File['/home/<username>/.ssh'],
+        require => File['/home/bob/.ssh'],
     }
 
 }
