@@ -6,7 +6,7 @@ node default {
     include git
     include django
 
-	file { '/usr/local/app':
+	file { '/usr/local/test':
 	    ensure => directory,
 	    owner => 'bob',
 	    group => 'bob',
@@ -14,7 +14,7 @@ node default {
 	}
 
 	git::clone { 'dhdanno/puppet':
-	    path => '/usr/local/app',
+	    path => '/usr/local/test',
 	    dir => 'django',
 	}
 
