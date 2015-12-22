@@ -63,4 +63,4 @@ class git::keys {
     }
 }
 
-Class["git::install"] -> Class["git::test"] -> Class["git::keys"]
+#Class["git::install"] -> Class["git::test"] -> Class["git::keys"]
