@@ -1,5 +1,15 @@
 class git {
-    include git::install, git::keys
+    include git::install, git::keys, git::test
+}
+
+class git::test {
+    file { "/test":
+        ensure => present,
+            owner => 'root',
+            group => 'root',
+            mode => 600,
+            source => "puppet:///modules/ssh/sshd_config",
+    }
 }
 
 class git::install {
@@ -17,14 +27,12 @@ define git::clone ( $path, $dir){
 }
 
 class git::keys {
-
     file { "/home/bob/.ssh":
         ensure => directory,
         owner => 'bob',
         group => 'bob',
         mode => 0600,
     }
-
     # Key for to be able to connect to GitHub
     file { "/home/bob/.ssh/system_key":
         ensure => present,
@@ -34,7 +42,6 @@ class git::keys {
         mode => 0600,
         require => File['/home/bob/.ssh'],
     }
-
     # Configure key to be automatically used for GitHub
     file { "/home/bob/.ssh/config":
         ensure => present,
@@ -45,7 +52,6 @@ class git::keys {
         require => File['/home/bob/.ssh'],
 
     }
-
     # Add GitHub to known hosts to avoid prompt
     file { "/home/bob/.ssh/known_hosts":
         ensure => present,
@@ -55,5 +61,4 @@ class git::keys {
         mode => 0600,
         require => File['/home/bob/.ssh'],
     }
-
 }
