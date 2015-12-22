@@ -1,12 +1,35 @@
 class django {
-    include django::install, django::dir, django::clone, django::environment
+    include django::install, django::dir, django::clone, django::environment, django::service
 }
+
+# specify dependency ordering
+Class["django::install"] -> Class["django::clone"] -> Class["django::enviroment"] -> Class["django::service"]
+
 
 class django::install {
     package { [ "python", "python-dev", "python-virtualenv", "python-pip",
                 "python-psycopg2", "python-imaging"]:
         ensure => present,
     }
+}
+
+# uses the supervisor module::service type to run gunicorn
+# as a monitored service
+class django::service {
+    include supervisor
+    supervisor::service { 'django':
+        ensure => present,
+        enable => true,
+        command => '/usr/local/app/ve/bin/gunicorn_django --workers=9 --bind=127.0.0.1:10001 --pythonpath . settings',
+        directory => '/usr/local/app/django',
+        user => 'www-data',
+    }
+
+    # call the nginx::site to place our conf file
+    include nginx
+	nginx::site{ 'django':
+	    source => 'puppet:///modules/django/django-nginx.conf',
+	}
 }
 
 class django::dir {
