@@ -7,7 +7,7 @@ class nginx::install{
         ensure => present
     }
 }
-
+# recursive purge of this dir
 class nginx::config{
     file { "/etc/nginx/sites-enabled/":
         recurse => true,
