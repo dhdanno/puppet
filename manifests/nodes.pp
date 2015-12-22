@@ -13,7 +13,7 @@ node default {
 	    mode => 755,
 	}
 
-	git::clone { 'samuelclay/NewsBlur':
+	git::cloner { 'samuelclay/NewsBlur':
 	    path => '/usr/local/app',
 	    dir => 'django',
 	}
