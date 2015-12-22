@@ -6,16 +6,5 @@ node default {
     include git
     include django
 
-	file { '/usr/local/app':
-	    ensure => directory,
-	    owner => 'bob',
-	    group => 'bob',
-	    mode => 755,
-	}
-
-	git::clone { 'samuelclay/NewsBlur':
-	    path => '/usr/local/app',
-	    dir => 'django',
-	}
 
 }

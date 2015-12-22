@@ -1,5 +1,5 @@
 class django {
-    include django::install
+    include django::install, django::dir, django::clone, django::environment
 }
 
 class django::install {
@@ -7,6 +7,15 @@ class django::install {
                 "python-psycopg2", "python-imaging"]:
         ensure => present,
     }
+}
+
+class django::dir {
+	file { '/usr/local/app':
+	    ensure => directory,
+	    owner => 'bob',
+	    group => 'bob',
+	    mode => 755,
+	}
 }
 
 class django::clone {
