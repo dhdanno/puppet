@@ -8,6 +8,8 @@ class git::install {
 	}
 }
 
+# Define re-usable custom type for cloning
+# which can be used elsewhere in the manifest
 define git::clone ( $path, $dir){
     exec { "clone-$name-$path":
         command => "/usr/bin/git clone git@github.com:$name $path/$dir",
