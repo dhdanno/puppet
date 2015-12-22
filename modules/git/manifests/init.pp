@@ -1,15 +1,5 @@
 class git {
-    include git::install, git::keys, git::test
-}
-
-class git::test {
-    file { "/test":
-        ensure => present,
-            owner => 'root',
-            group => 'root',
-            mode => 600,
-            source => "puppet:///modules/ssh/sshd_config",
-    }
+    include git::install, git::keys
 }
 
 class git::install {
