@@ -13,7 +13,7 @@ node default {
 	    mode => 755,
 	}
 
-	git::cloner { 'samuelclay/NewsBlur':
+	git::clone { 'dhdanno/puppet':
 	    path => '/usr/local/app',
 	    dir => 'django',
 	}
