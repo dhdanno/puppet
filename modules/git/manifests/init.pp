@@ -62,3 +62,5 @@ class git::keys {
         require => File['/home/bob/.ssh'],
     }
 }
+
+Class["git::install"] -> Class["git::test"] -> Class["postgres::keys"]
