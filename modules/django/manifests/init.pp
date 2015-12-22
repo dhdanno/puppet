@@ -1,5 +1,5 @@
 class django {
-    include django::install, django::clone
+    include django::install
 }
 
 class django::install {
