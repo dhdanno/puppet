@@ -26,12 +26,11 @@ class ssh::config {
 class ssh::service {
 
 	service { "ssh":
-    		ensure => running,
-    		hasstatus => true,
-   		hasrestart => true,
-    		enable => true,
+		ensure => running,
+		hasstatus => true,
+			hasrestart => true,
+		enable => true,
 	}
-
 }
 
 Class["ssh::install"] -> Class["ssh::config"] -> Class["ssh::service"]

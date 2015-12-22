@@ -4,5 +4,4 @@ node default {
     include ssh
     include postgres
     include git
-
 }
