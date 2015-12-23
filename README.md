@@ -1,6 +1,6 @@
 # Sample Puppet Script
 
-This is my first dive into puppet configuration management. Here we have modules / manifests for installing and configurting ssh, git, postgres, django and a supervisor.
+This is my first dive into puppet configuration management. Here we have modules / manifests for installing and configuring ssh, git, postgres, django and a supervisor. It also creates a local user and applies a custom bash profile.
 
 There's a custom module for git which breaks away from puppet's declaritive nature to achieve deeper customization.
 
